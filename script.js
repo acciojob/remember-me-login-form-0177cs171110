@@ -1,23 +1,17 @@
-//your JS code here. If required.
 document.addEventListener("DOMContentLoaded", () => {
   const loginForm = document.getElementById("loginForm");
   const usernameInput = document.getElementById("username");
   const passwordInput = document.getElementById("password");
   const rememberMeCheckbox = document.getElementById("rememberMe");
   const submitButton = document.getElementById("submit");
+  const existingButton = document.getElementById("existing");
 
   // Check if there are saved details in local storage
   const savedUsername = localStorage.getItem("username");
   const savedPassword = localStorage.getItem("password");
 
   if (savedUsername && savedPassword) {
-    const existingButton = document.createElement("button");
-    existingButton.id = "existing";
-    existingButton.textContent = "Login as existing user";
-    existingButton.addEventListener("click", () => {
-      alert(`Logged in as ${savedUsername}`);
-    });
-    document.body.appendChild(existingButton);
+    existingButton.style.display = "block";
   }
 
   // Event listener for form submission
@@ -38,5 +32,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     alert(`Logged in as ${username}`);
   });
-});
 
+  // Event listener for existing user button
+  existingButton.addEventListener("click", () => {
+    const savedUsername = localStorage.getItem("username");
+    alert(`Logged in as ${savedUsername}`);
+  });
+});
